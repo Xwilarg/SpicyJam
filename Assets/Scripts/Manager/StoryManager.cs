@@ -1,5 +1,6 @@
 using SpicyJam.NPC;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SpicyJam.Manager
 {
@@ -15,6 +16,9 @@ namespace SpicyJam.Manager
         [SerializeField]
         private TextDisplay _display;
 
+        [SerializeField]
+        private Button[] _dangerousOptions;
+
         private NpcController _currentNpc;
 
         private void Awake()
@@ -28,6 +32,10 @@ namespace SpicyJam.Manager
             _currentNpc = npc;
             _storyContainer.SetActive(true);
             _display.ToDisplay = npc.GetDescription();
+            foreach (var b in _dangerousOptions)
+            {
+                b.interactable = !npc.IsPriest;
+            }
         }
 
         public void Kill()

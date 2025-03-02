@@ -20,6 +20,7 @@ namespace SpicyJam.NPC
         public GameObject GameObject => gameObject;
 
         public bool IsVampire { set; get; }
+        public bool IsPriest { set; get; }
 
         private string[] _eyesColors = new[] { "blue", "yellow", "brown" };
         private string[] _hairColors = new[] { "blond", "light brown", "dark brown", "red" };

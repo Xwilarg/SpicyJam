@@ -16,7 +16,7 @@ namespace SpicyJam.Manager
         private GameObject _npcPrefab;
 
         [SerializeField]
-        private int _spawnCount, _vampireCount;
+        private int _spawnCount, _vampireCount, _priestCount;
 
         private List<NpcController> _npcs = new();
 
@@ -30,7 +30,7 @@ namespace SpicyJam.Manager
                 _npcs.Add(go.GetComponent<NpcController>());
             }
 
-            Assert.IsTrue(_vampireCount >= _spawnCount);
+            Assert.IsTrue(_vampireCount + _priestCount <= _spawnCount);
             List<int> ids = new();
             while (ids.Count < _vampireCount)
             {
@@ -39,6 +39,15 @@ namespace SpicyJam.Manager
                 {
                     ids.Add(id);
                     _npcs[id].IsVampire = true;
+                }
+            }
+            while (ids.Count < _vampireCount + _priestCount)
+            {
+                var id = Random.Range(0, _npcs.Count);
+                if (!ids.Contains(id))
+                {
+                    ids.Add(id);
+                    _npcs[id].IsPriest = true;
                 }
             }
         }
