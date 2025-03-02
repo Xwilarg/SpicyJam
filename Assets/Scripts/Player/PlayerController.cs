@@ -1,5 +1,6 @@
 using InflationPotion.SO;
 using SpicyJam.Interaction;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -66,7 +67,20 @@ namespace SpicyJam.Player
             if (value.phase == InputActionPhase.Started)
             {
                 _mov = Vector2.zero;
-                //_interactionTarget.Interact(this);
+                var colls = Physics2D.OverlapCircleAll(_feet.transform.position + GetAttackDir(_cam, _pInfo, out _), _pInfo.AttackSize, LayerMask.GetMask("Prop"));
+                IInteractible target = null;
+                if (colls.Length == 1)
+                {
+                    target = colls[0].GetComponent<IInteractible>();
+                }
+                else if (colls.Length > 1)
+                {
+                    target = colls.Where(x => x.GetComponent<IInteractible>() != null).OrderBy(x => Vector2.Distance(transform.position, x.transform.position)).First().GetComponent<IInteractible>();
+                }
+                if (target != null && target.CanInteract)
+                {
+                    target.Interact(this);
+                }
             }
         }
     }
