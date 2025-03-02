@@ -65,7 +65,7 @@ namespace SpicyJam.NPC
             str.AppendLine($"This person seem to be a {_attrs["age"]} {_attrs["gender"]} with {_attrs["eyesColor"]} eyes and {_attrs["hairColor"]} hair");
             if (IsPriest)
             {
-                str.AppendLine($"From {_attrs["gender"]} outfits, you can guess this person is a priest");
+                str.AppendLine($"From {_attrs["gender"]} outfits, you can guess this person is a priest\n(Vampires will always being close to a priest)");
             }
             return str.ToString();
         }

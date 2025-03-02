@@ -1405,8 +1405,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: -20, y: -40}
+  m_AnchoredPosition: {x: 0, y: -5}
+  m_SizeDelta: {x: -20, y: -30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1260425125
 MonoBehaviour:
@@ -1433,7 +1433,9 @@ MonoBehaviour:
     This is a dialogue text
 
     This is a dialogue
-    text'
+    text
+
+    This is a dialogue text'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba9baac44122e60458ae17b4dd96da9b, type: 2}
   m_sharedMaterial: {fileID: -7890364177632214551, guid: ba9baac44122e60458ae17b4dd96da9b, type: 2}
@@ -1460,8 +1462,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
