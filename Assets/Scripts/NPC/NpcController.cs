@@ -18,6 +18,7 @@ namespace SpicyJam.NPC
         private Transform _target;
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
+        private CircleCollider2D _coll;
         private Color _baseColor;
 
         public bool CanInteract => true;
@@ -48,6 +49,7 @@ namespace SpicyJam.NPC
         {
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
+            _coll = GetComponent<CircleCollider2D>();
 
             _baseColor = _sr.color;
             _attrs.Add("eyesColor", _eyesColors[Random.Range(0, _eyesColors.Length)]);
@@ -72,18 +74,11 @@ namespace SpicyJam.NPC
                     }
                 });
             }
-
-#if UNITY_EDITOR
-            // Debug
-            if (IsVampire) _sr.color = Color.red;
-            else if (IsPriest) _sr.color = new Color(1f, 0.078f, 0.576f);
-            _baseColor = _sr.color;
-#endif
         }
 
         public void RedirectOppositeDirection()
         {
-            _target = MapManager.Instance.GetRandomNode(x => Vector2.Dot(_rb.linearVelocity.normalized, (transform.position - x.position)) < 0f);
+            _target = MapManager.Instance.GetRandomNode(x => Vector2.Dot(_rb.linearVelocity.normalized, (x.position - transform.position)) < 0f);
         }
 
         public string GetDescription()
@@ -111,6 +106,20 @@ namespace SpicyJam.NPC
             else
             {
                 _rb.linearVelocity = (_target.position - transform.position).normalized * _speed;
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (IsVampire) Gizmos.color = Color.red;
+            else if (IsPriest) Gizmos.color = new Color(1f, 0.078f, 0.576f);
+            else return;
+
+            Gizmos.DrawSphere(transform.position, _coll.radius);
+
+            if (IsPriest)
+            {
+                Gizmos.DrawWireSphere(transform.position, _triggerArea.GetComponent<CircleCollider2D>().radius);
             }
         }
     }

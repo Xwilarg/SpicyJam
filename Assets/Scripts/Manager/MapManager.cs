@@ -21,6 +21,10 @@ namespace SpicyJam.Manager
         public Transform GetRandomNode(System.Func<Transform, bool> predicate)
         {
             var possibles = _nodes.Where(predicate).ToArray();
+            if (!possibles.Any())
+            {
+                return GetRandomNode();
+            }
             return possibles[Random.Range(0, possibles.Length)];
         }
     }
