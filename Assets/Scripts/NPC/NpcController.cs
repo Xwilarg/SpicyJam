@@ -35,6 +35,9 @@ namespace SpicyJam.NPC
         private readonly string[] _pronouns = new[] { "her", "his" };
         private readonly Dictionary<string, string> _attrs = new();
 
+        private float _redirectTimer;
+        private const float RedirectTimerRef = .5f;
+
         public void Interact(PlayerController pc)
         {
             StoryManager.Instance.ShowDescription(this);
@@ -58,6 +61,8 @@ namespace SpicyJam.NPC
             _attrs.Add("gender", _gender[gender]);
             _attrs.Add("pronouns", _pronouns[gender]);
             _attrs.Add("age", _age[Random.Range(0, _age.Length)]);
+
+            _redirectTimer = RedirectTimerRef;
         }
 
         private void Start()
@@ -102,10 +107,24 @@ namespace SpicyJam.NPC
             {
                 _target = MapManager.Instance.GetRandomNode();
                 _rb.linearVelocity = Vector2.zero;
+                _redirectTimer = RedirectTimerRef;
             }
             else
             {
                 _rb.linearVelocity = (_target.position - transform.position).normalized * _speed;
+            }
+
+            if (GameManager.Instance.CanPlay && !IsVampire && !IsPriest)
+            {
+                _redirectTimer -= Time.deltaTime;
+                if (_redirectTimer <= 0f)
+                {
+                    _redirectTimer = RedirectTimerRef;
+                    if (Random.Range(0, 100) == 0)
+                    {
+                        _target = MapManager.Instance.GetRandomNode();
+                    }
+                }
             }
         }
 
