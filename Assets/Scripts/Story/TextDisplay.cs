@@ -3,7 +3,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 
-namespace SpicyJam.NPC
+namespace SpicyJam.Story
 {
     public class TextDisplay : MonoBehaviour
     {

@@ -26,6 +26,7 @@ namespace SpicyJam.NPC
 
         public bool IsVampire { set; get; }
         public bool IsPriest { set; get; }
+        public bool WasMolested { set; get; }
 
         private readonly string[] _eyesColors = new[] { "blue", "yellow", "brown" };
         private readonly string[] _hairColors = new[] { "blond", "light brown", "dark brown", "red" };
@@ -73,7 +74,7 @@ namespace SpicyJam.NPC
             {
                 _triggerArea.OnTriggerEnter.AddListener(c =>
                 {
-                    if (c.TryGetComponent<NpcController>(out var npcC) && npcC.IsPriest)
+                    if (c.TryGetComponent<NpcController>(out var npcC) && npcC.IsPriest && Random.Range(0, 3) < 2)
                     {
                         RedirectOppositeDirection();
                     }
@@ -92,7 +93,11 @@ namespace SpicyJam.NPC
             str.AppendLine($"This person seem to be a {_attrs["age"]} {_attrs["gender"]} with {_attrs["eyesColor"]} eyes and {_attrs["hairColor"]} hair");
             if (IsPriest)
             {
-                str.AppendLine($"From {_attrs["gender"]} outfits, you can guess this person is a priest\n(Vampires will always being close to a priest)");
+                str.AppendLine($"From {_attrs["gender"]} outfits, you can guess this person is a priest\n(Vampires will generally avoid being close to a priest)");
+            }
+            if (WasMolested)
+            {
+                str.AppendLine($"This person was assaulted by you and is now helping you");
             }
             return str.ToString();
         }
