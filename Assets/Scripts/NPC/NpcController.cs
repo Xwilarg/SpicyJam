@@ -48,6 +48,7 @@ namespace SpicyJam.NPC
         {
             _rb = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
+
             _baseColor = _sr.color;
             _attrs.Add("eyesColor", _eyesColors[Random.Range(0, _eyesColors.Length)]);
             _attrs.Add("hairColor", _hairColors[Random.Range(0, _hairColors.Length)]);
@@ -65,9 +66,24 @@ namespace SpicyJam.NPC
             {
                 _triggerArea.OnTriggerEnter.AddListener(c =>
                 {
-                    // TODO: Redirect vampire in other direction
+                    if (c.TryGetComponent<NpcController>(out var npcC) && npcC.IsPriest)
+                    {
+                        RedirectOppositeDirection();
+                    }
                 });
             }
+
+#if UNITY_EDITOR
+            // Debug
+            if (IsVampire) _sr.color = Color.red;
+            else if (IsPriest) _sr.color = new Color(1f, 0.078f, 0.576f);
+            _baseColor = _sr.color;
+#endif
+        }
+
+        public void RedirectOppositeDirection()
+        {
+            _target = MapManager.Instance.GetRandomNode(x => Vector2.Dot(_rb.linearVelocity.normalized, (transform.position - x.position)) < 0f);
         }
 
         public string GetDescription()

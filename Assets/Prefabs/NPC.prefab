@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
-  _triggerArea: {fileID: 0}
+  _triggerArea: {fileID: 782828739855166318}
 --- !u!58 &-2240413331088994312
 CircleCollider2D:
   m_ObjectHideFlags: 0
