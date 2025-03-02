@@ -12,8 +12,8 @@ namespace SpicyJam.NPC
 
         private Transform _target;
         private Rigidbody2D _rb;
-
-        public int ID => gameObject.GetInstanceID();
+        private SpriteRenderer _sr;
+        private Color _baseColor;
 
         public bool CanInteract => true;
 
@@ -22,10 +22,21 @@ namespace SpicyJam.NPC
             throw new System.NotImplementedException();
         }
 
+        public void ToggleHighlight(bool value)
+        {
+            _sr.color = value ? Color.green : _baseColor;
+        }
+
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+            _sr = GetComponent<SpriteRenderer>();
+            _baseColor = _sr.color;
+        }
+
         private void Start()
         {
             _target = MapManager.Instance.GetRandomNode();
-            _rb = GetComponent<Rigidbody2D>();
         }
 
         private void Update()

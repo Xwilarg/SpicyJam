@@ -1,5 +1,6 @@
 using InflationPotion.SO;
 using SpicyJam.Interaction;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,7 +22,7 @@ namespace SpicyJam.Player
 
         private Camera _cam;
         private Rigidbody2D _rb;
-        private IInteractible _interactionTarget; // TODO: Store as list
+        private readonly List<IInteractible> _interactionTargets = new();
 
         private void Awake()
         {
@@ -35,14 +36,14 @@ namespace SpicyJam.Player
             {
                 if (coll.TryGetComponent<IInteractible>(out var i))
                 {
-                    _interactionTarget = i;
+                    _interactionTargets.Add(i);
                 }
             });
             _triggerArea.OnTriggerExit.AddListener((coll) =>
             {
-                if (coll.TryGetComponent<IInteractible>(out var i) && i.ID == _interactionTarget.ID)
+                if (coll.TryGetComponent<IInteractible>(out var i))
                 {
-                    _interactionTarget = null;
+                    _interactionTargets.Remove(i);
                 }
             });
         }
@@ -91,9 +92,10 @@ namespace SpicyJam.Player
             if (value.phase == InputActionPhase.Started)
             {
                 _mov = Vector2.zero;
-                if (_interactionTarget != null && _interactionTarget.CanInteract)
+                var target = _interactionTargets.FirstOrDefault();
+                if (target != null && target.CanInteract)
                 {
-                    _interactionTarget.Interact(this);
+                    target.Interact(this);
                 }
             }
         }
