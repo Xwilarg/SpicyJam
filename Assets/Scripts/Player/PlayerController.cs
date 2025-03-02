@@ -1,5 +1,6 @@
 using InflationPotion.SO;
 using SpicyJam.Interaction;
+using SpicyJam.Manager;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -51,11 +52,16 @@ namespace SpicyJam.Player
 
         private void FixedUpdate()
         {
-            _rb.linearVelocity = _mov * _pInfo.PlayerSpeed;
+            _rb.linearVelocity = GameManager.Instance.CanPlay ? _mov * _pInfo.PlayerSpeed : Vector2.zero;
         }
 
         private void Update()
         {
+            if (!GameManager.Instance.CanPlay)
+            {
+                return;
+            }
+
             if (_interactionTargets.Any())
             {
                 foreach (var iTarget in _interactionTargets)
@@ -102,7 +108,7 @@ namespace SpicyJam.Player
 
         public void OnInteract(InputAction.CallbackContext value)
         {
-            if (value.phase == InputActionPhase.Started)
+            if (value.phase == InputActionPhase.Started && GameManager.Instance.CanPlay)
             {
                 _mov = Vector2.zero;
                 var target = _interactionTargets.FirstOrDefault();

@@ -20,7 +20,7 @@ namespace SpicyJam.NPC
 
         public void Interact(PlayerController pc)
         {
-            Time.timeScale = 0f;
+            GameManager.Instance.IsInDialogue = true;
         }
 
         public void ToggleHighlight(bool value)
@@ -42,9 +42,14 @@ namespace SpicyJam.NPC
 
         private void Update()
         {
-            if (Vector2.Distance(_target.position, transform.position) < .1f)
+            if (!GameManager.Instance.CanPlay)
+            {
+                _rb.linearVelocity = Vector2.zero;
+            }
+            else if (Vector2.Distance(_target.position, transform.position) < .1f)
             {
                 _target = MapManager.Instance.GetRandomNode();
+                _rb.linearVelocity = Vector2.zero;
             }
             else
             {

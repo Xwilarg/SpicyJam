@@ -252,6 +252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 355905899}
+  - component: {fileID: 355905901}
   - component: {fileID: 355905898}
   - component: {fileID: 355905900}
   m_Layer: 0
@@ -310,6 +311,18 @@ MonoBehaviour:
   _spawnAreaRadius: 10
   _npcPrefab: {fileID: 7024550848899276575, guid: bbfbc85897caf3d4c8d26e1967d48927, type: 3}
   _spawnCount: 50
+--- !u!114 &355905901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355905897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a1eb73f63226a4b995e58b6bdf6ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
