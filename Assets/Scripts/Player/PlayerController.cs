@@ -14,10 +14,14 @@ namespace SpicyJam.Player
         [SerializeField]
         private PlayerInfo _pInfo;
 
+        [SerializeField]
+        private TriggerArea _triggerArea;
+
         private Vector2 _mov;
 
         private Camera _cam;
         private Rigidbody2D _rb;
+        private IInteractible _interactionTarget; // TODO: Store as list
 
         private void Awake()
         {
@@ -26,11 +30,31 @@ namespace SpicyJam.Player
             //_anim = GetComponentInChildren<Animator>();
 
             _cam = Camera.main;
+
+            _triggerArea.OnTriggerEvent.AddListener((coll) =>
+            {
+                if (coll.TryGetComponent<IInteractible>(out var i))
+                {
+                    _interactionTarget = i;
+                }
+            });
+            _triggerArea.OnTriggerExit.AddListener((coll) =>
+            {
+                if (coll.TryGetComponent<IInteractible>(out var i) && i.ID == _interactionTarget.ID)
+                {
+                    _interactionTarget = null;
+                }
+            });
         }
 
         private void FixedUpdate()
         {
             _rb.linearVelocity = _mov * _pInfo.PlayerSpeed;
+        }
+
+        private void Update()
+        {
+            _triggerArea.transform.position = _feet.transform.position + GetAttackDir(_cam, _pInfo, out _);
         }
 
         private Vector3 GetAttackDir(Camera cam, PlayerInfo playerInfo, out Vector3 pos)
@@ -67,19 +91,9 @@ namespace SpicyJam.Player
             if (value.phase == InputActionPhase.Started)
             {
                 _mov = Vector2.zero;
-                var colls = Physics2D.OverlapCircleAll(_feet.transform.position + GetAttackDir(_cam, _pInfo, out _), _pInfo.AttackSize, LayerMask.GetMask("Prop"));
-                IInteractible target = null;
-                if (colls.Length == 1)
+                if (_interactionTarget != null && _interactionTarget.CanInteract)
                 {
-                    target = colls[0].GetComponent<IInteractible>();
-                }
-                else if (colls.Length > 1)
-                {
-                    target = colls.Where(x => x.GetComponent<IInteractible>() != null).OrderBy(x => Vector2.Distance(transform.position, x.transform.position)).First().GetComponent<IInteractible>();
-                }
-                if (target != null && target.CanInteract)
-                {
-                    target.Interact(this);
+                    _interactionTarget.Interact(this);
                 }
             }
         }

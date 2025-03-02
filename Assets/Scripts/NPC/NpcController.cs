@@ -1,15 +1,26 @@
+using SpicyJam.Interaction;
 using SpicyJam.Manager;
+using SpicyJam.Player;
 using UnityEngine;
 
 namespace SpicyJam.NPC
 {
-    public class NpcController : MonoBehaviour
+    public class NpcController : MonoBehaviour, IInteractible
     {
         [SerializeField]
         private float _speed;
 
         private Transform _target;
         private Rigidbody2D _rb;
+
+        public int ID => gameObject.GetInstanceID();
+
+        public bool CanInteract => true;
+
+        public void Interact(PlayerController pc)
+        {
+            throw new System.NotImplementedException();
+        }
 
         private void Start()
         {
