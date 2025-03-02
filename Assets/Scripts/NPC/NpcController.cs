@@ -20,7 +20,7 @@ namespace SpicyJam.NPC
 
         public void Interact(PlayerController pc)
         {
-            throw new System.NotImplementedException();
+            Time.timeScale = 0f;
         }
 
         public void ToggleHighlight(bool value)
