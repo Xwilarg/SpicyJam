@@ -43,6 +43,7 @@ namespace SpicyJam.Player
             {
                 if (coll.TryGetComponent<IInteractible>(out var i))
                 {
+                    i.ToggleHighlight(false);
                     _interactionTargets.Remove(i);
                 }
             });
@@ -55,6 +56,18 @@ namespace SpicyJam.Player
 
         private void Update()
         {
+            if (_interactionTargets.Any())
+            {
+                foreach (var iTarget in _interactionTargets)
+                {
+                    iTarget.ToggleHighlight(false);
+                }
+                var centerPos = _feet.transform.position + GetAttackDir(_cam, _pInfo, out _);
+                var first = _interactionTargets.OrderBy(x => Vector2.Distance(x.GameObject.transform.position, centerPos)).First();
+                first.ToggleHighlight(true);
+                _interactionTargets.Remove(first);
+                _interactionTargets.Insert(0, first);
+            }
             _triggerArea.transform.position = _feet.transform.position + GetAttackDir(_cam, _pInfo, out _);
         }
 

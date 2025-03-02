@@ -16,6 +16,7 @@ namespace SpicyJam.NPC
         private Color _baseColor;
 
         public bool CanInteract => true;
+        public GameObject GameObject => gameObject;
 
         public void Interact(PlayerController pc)
         {

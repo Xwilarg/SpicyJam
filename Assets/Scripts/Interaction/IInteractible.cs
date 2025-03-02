@@ -1,4 +1,5 @@
 using SpicyJam.Player;
+using UnityEngine;
 
 namespace SpicyJam.Interaction
 {
@@ -6,6 +7,7 @@ namespace SpicyJam.Interaction
     {
         public void Interact(PlayerController pc);
         public bool CanInteract { get; }
+        public GameObject GameObject { get; }
 
         public void ToggleHighlight(bool value);
     }
