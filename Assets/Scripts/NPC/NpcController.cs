@@ -25,7 +25,7 @@ namespace SpicyJam.NPC
         private string[] _hairColors = new[] { "blond", "light brown", "dark brown", "red" };
         private string[] _gender = new[] { "female", "male" };
         private string[] _age = new[] { "young", "old" };
-        private Dictionary<string, string> _attrs = new();
+        private readonly Dictionary<string, string> _attrs = new();
 
         public void Interact(PlayerController pc)
         {

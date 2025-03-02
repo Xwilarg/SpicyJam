@@ -7,6 +7,8 @@ namespace SpicyJam.Manager
 {
     public class NpcManager : MonoBehaviour
     {
+        public static NpcManager Instance { private set; get; }
+
         [SerializeField]
         private float _spawnAreaRadius;
 
@@ -20,6 +22,8 @@ namespace SpicyJam.Manager
 
         private void Awake()
         {
+            Instance = this;
+
             for (int i = 0; i < _spawnCount; i++)
             {
                 var go = Instantiate(_npcPrefab, Random.insideUnitCircle * _spawnAreaRadius, Quaternion.identity);
@@ -43,6 +47,12 @@ namespace SpicyJam.Manager
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(Vector3.zero, _spawnAreaRadius);
+        }
+
+        public void Kill(NpcController npc)
+        {
+            _npcs.Remove(npc);
+            Destroy(npc.gameObject);
         }
     }
 }
