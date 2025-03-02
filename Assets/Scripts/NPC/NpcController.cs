@@ -20,7 +20,7 @@ namespace SpicyJam.NPC
 
         public void Interact(PlayerController pc)
         {
-            GameManager.Instance.IsInDialogue = true;
+            StoryManager.Instance.ShowDescription(this);
         }
 
         public void ToggleHighlight(bool value)

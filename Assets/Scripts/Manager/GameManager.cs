@@ -11,8 +11,6 @@ namespace SpicyJam.Manager
             Instance = this;
         }
 
-        public bool IsInDialogue { set; private get; }
-
-        public bool CanPlay => !IsInDialogue;
+        public bool CanPlay => !StoryManager.Instance.IsStoryShown;
     }
 }

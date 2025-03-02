@@ -13,7 +13,7 @@ namespace SpicyJam.NPC
 
         private int _index;
 
-        private const float _displaySpeedRef = .02f;
+        private const float _displaySpeedRef = .01f;
 
         private string _toDisplay;
         public string ToDisplay
