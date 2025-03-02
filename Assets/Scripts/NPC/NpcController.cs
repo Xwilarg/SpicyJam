@@ -18,6 +18,8 @@ namespace SpicyJam.NPC
         public bool CanInteract => true;
         public GameObject GameObject => gameObject;
 
+        public bool IsVampire { set; get; }
+
         public void Interact(PlayerController pc)
         {
             StoryManager.Instance.ShowDescription(this);

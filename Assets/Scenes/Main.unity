@@ -312,6 +312,7 @@ MonoBehaviour:
   _spawnAreaRadius: 10
   _npcPrefab: {fileID: 7024550848899276575, guid: bbfbc85897caf3d4c8d26e1967d48927, type: 3}
   _spawnCount: 50
+  _vampireCount: 5
 --- !u!114 &355905901
 MonoBehaviour:
   m_ObjectHideFlags: 0
