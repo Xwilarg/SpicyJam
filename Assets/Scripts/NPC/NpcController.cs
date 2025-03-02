@@ -12,6 +12,9 @@ namespace SpicyJam.NPC
         [SerializeField]
         private float _speed;
 
+        [SerializeField]
+        private TriggerArea _triggerArea;
+
         private Transform _target;
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
@@ -57,6 +60,14 @@ namespace SpicyJam.NPC
         private void Start()
         {
             _target = MapManager.Instance.GetRandomNode();
+
+            if (IsVampire)
+            {
+                _triggerArea.OnTriggerEnter.AddListener(c =>
+                {
+                    // TODO: Redirect vampire in other direction
+                });
+            }
         }
 
         public string GetDescription()

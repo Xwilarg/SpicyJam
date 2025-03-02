@@ -33,7 +33,7 @@ namespace SpicyJam.Player
 
             _cam = Camera.main;
 
-            _triggerArea.OnTriggerEvent.AddListener((coll) =>
+            _triggerArea.OnTriggerEnter.AddListener((coll) =>
             {
                 if (coll.TryGetComponent<IInteractible>(out var i))
                 {
