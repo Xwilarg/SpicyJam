@@ -18,12 +18,18 @@ namespace SpicyJam.Manager
         private void Awake()
         {
             Instance = this;
+            _storyContainer.SetActive(false);
         }
 
         public void ShowDescription(NpcController npc)
         {
             _storyContainer.SetActive(true);
             _display.ToDisplay = "This is a sample text";
+        }
+
+        public void CloseStory()
+        {
+            _storyContainer.SetActive(false);
         }
     }
 }
