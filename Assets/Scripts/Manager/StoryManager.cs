@@ -24,7 +24,7 @@ namespace SpicyJam.Manager
         public void ShowDescription(NpcController npc)
         {
             _storyContainer.SetActive(true);
-            _display.ToDisplay = "This is a sample text";
+            _display.ToDisplay = npc.GetDescription();
         }
 
         public void CloseStory()
