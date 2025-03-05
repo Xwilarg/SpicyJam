@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7862460050892325853}
   m_Layer: 10
   m_Name: MeetingArea
-  m_TagString: Untagged
+  m_TagString: MeetingArea
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,4 +67,4 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1
+  m_Radius: 0.75

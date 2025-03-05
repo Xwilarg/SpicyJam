@@ -39,6 +39,8 @@ namespace SpicyJam.NPC
         private float _redirectTimer;
         private const float RedirectTimerRef = .5f;
 
+        private GameObject _meetingArea;
+
         public void Interact(PlayerController pc)
         {
             StoryManager.Instance.ShowDescription(this);
@@ -82,6 +84,14 @@ namespace SpicyJam.NPC
             }
         }
 
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.collider.CompareTag("MeetingArea"))
+            {
+                _meetingArea = collision.gameObject;
+            }
+        }
+
         public void RedirectOppositeDirection()
         {
             _target = MapManager.Instance.GetRandomNode(x => Vector2.Dot(_rb.linearVelocity.normalized, (x.position - transform.position)) < 0f);
@@ -104,7 +114,7 @@ namespace SpicyJam.NPC
 
         private void Update()
         {
-            if (!GameManager.Instance.CanPlay)
+            if (!GameManager.Instance.CanPlay || _meetingArea != null)
             {
                 _rb.linearVelocity = Vector2.zero;
             }
