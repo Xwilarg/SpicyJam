@@ -23,13 +23,14 @@ namespace SpicyJam.Player
 
         private Camera _cam;
         private Rigidbody2D _rb;
+        private Animator _anim;
         private readonly List<IInteractible> _interactionTargets = new();
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
 
-            //_anim = GetComponentInChildren<Animator>();
+            _anim = GetComponent<Animator>();
 
             _cam = Camera.main;
 
@@ -98,11 +99,11 @@ namespace SpicyJam.Player
         {
             _mov = value.ReadValue<Vector2>();
 
-            //_anim.SetBool("IsMoving", _mov.magnitude > 0f);
+            _anim.SetBool("IsMoving", _mov.magnitude > 0f);
             if (_mov.magnitude > 0f)
             {
-                //_anim.SetFloat("X", _mov.x);
-                //_anim.SetFloat("Y", _mov.y);
+                _anim.SetFloat("X", _mov.x);
+                _anim.SetFloat("Y", _mov.y);
             }
         }
 
