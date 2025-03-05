@@ -18,6 +18,12 @@ namespace SpicyJam.Manager
         [SerializeField]
         private int _spawnCount, _vampireCount, _priestCount;
 
+        [SerializeField]
+        private GameObject _meetingPrefab;
+
+        private float _meetingAreaTimer;
+        private float MeetingAreaTimerRef = 2f;
+
         private List<NpcController> _npcs = new();
 
         private void Awake()
@@ -49,6 +55,18 @@ namespace SpicyJam.Manager
                     ids.Add(id);
                     _npcs[id].IsPriest = true;
                 }
+            }
+        }
+
+        private void Update()
+        {
+            if (!GameManager.Instance.CanPlay) return;
+
+            _meetingAreaTimer -= Time.deltaTime;
+            if (_meetingAreaTimer <= 0f)
+            {
+                _meetingAreaTimer = MeetingAreaTimerRef;
+                Destroy(Instantiate(_meetingPrefab, Random.insideUnitCircle * _spawnAreaRadius, Quaternion.identity), Random.Range(1f, 3f));
             }
         }
 

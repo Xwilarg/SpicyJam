@@ -586,6 +586,7 @@ MonoBehaviour:
   _spawnCount: 50
   _vampireCount: 5
   _priestCount: 1
+  _meetingPrefab: {fileID: 8447149037571298874, guid: 2f6b8bef4db7d0b47b35365a3b8a415b, type: 3}
 --- !u!114 &355905901
 MonoBehaviour:
   m_ObjectHideFlags: 0
