@@ -10,6 +10,8 @@ namespace SpicyJam.NPC
 
         private readonly List<NpcController> _npcs = new();
 
+        public bool DoesContainsPriest => _npcs.Any(x => x.IsPriest);
+
         private void Awake()
         {
             _destroyTimer = Random.Range(1f, 3f);
@@ -22,7 +24,7 @@ namespace SpicyJam.NPC
             {
                 if (_npcs.Any(x => x.IsVampire))
                 {
-                    var possibleTargets = _npcs.Where(x => !x.IsPriest && !x.WasBitten).ToArray();
+                    var possibleTargets = _npcs.Where(x => !x.WasBitten).ToArray();
                     if (possibleTargets.Any())
                     {
                         possibleTargets[Random.Range(0, possibleTargets.Length)].WasBitten = true;
@@ -41,6 +43,15 @@ namespace SpicyJam.NPC
         public void Register(NpcController npc)
         {
             _npcs.Add(npc);
+
+            if (npc.IsPriest) // Priest joined the meeting, all vampires must flee
+            {
+                foreach (var vamp in _npcs.Where(x => x.IsVampire))
+                {
+                    vamp.FleeFromMeeting();
+                }
+                _npcs.RemoveAll(x => x.IsVampire);
+            }
         }
     }
 }

@@ -101,9 +101,22 @@ namespace SpicyJam.NPC
         {
             if (collision.CompareTag("MeetingArea"))
             {
+                if (IsVampire && collision.gameObject.GetComponent<MeetingArea>().DoesContainsPriest)
+                {
+                    // There is a priest at this meeting so we don't stop!
+                    return;
+                }
                 _meetingArea = collision.gameObject;
                 _meetingArea.GetComponent<MeetingArea>().Register(this);
             }
+        }
+
+        /// <summary>
+        /// Called from vampires when a priest join a meeting they are in
+        /// </summary>
+        public void FleeFromMeeting()
+        {
+            _meetingArea = null;
         }
 
         public void RedirectOppositeDirection()
@@ -171,6 +184,7 @@ namespace SpicyJam.NPC
             else if (IsPriest)
             {
                 Gizmos.color = new Color(1f, 0.078f, 0.576f);
+                Gizmos.DrawSphere(transform.position, _coll.radius);
                 Gizmos.DrawWireSphere(transform.position, _triggerArea.GetComponent<CircleCollider2D>().radius);
             }
 
