@@ -163,15 +163,26 @@ namespace SpicyJam.NPC
 
         private void OnDrawGizmos()
         {
-            if (IsVampire) Gizmos.color = Color.red;
-            else if (IsPriest) Gizmos.color = new Color(1f, 0.078f, 0.576f);
-            else return;
-
-            Gizmos.DrawSphere(transform.position, _coll.radius);
-
-            if (IsPriest)
+            if (IsVampire)
             {
+                Gizmos.color = Color.red;
+                Gizmos.DrawSphere(transform.position, _coll.radius);
+            }
+            else if (IsPriest)
+            {
+                Gizmos.color = new Color(1f, 0.078f, 0.576f);
                 Gizmos.DrawWireSphere(transform.position, _triggerArea.GetComponent<CircleCollider2D>().radius);
+            }
+
+            if (WasMolested)
+            {
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawSphere(transform.position, _coll.radius);
+            }
+            if (WasBitten)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(transform.position, _coll.radius);
             }
         }
     }
