@@ -66,7 +66,7 @@ namespace SpicyJam.Manager
             if (_meetingAreaTimer <= 0f)
             {
                 _meetingAreaTimer = MeetingAreaTimerRef;
-                Destroy(Instantiate(_meetingPrefab, Random.insideUnitCircle * _spawnAreaRadius, Quaternion.identity), Random.Range(1f, 3f));
+                Instantiate(_meetingPrefab, Random.insideUnitCircle * _spawnAreaRadius, Quaternion.identity);
             }
         }
 

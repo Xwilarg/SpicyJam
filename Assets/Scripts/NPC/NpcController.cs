@@ -97,11 +97,12 @@ namespace SpicyJam.NPC
             }
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.collider.CompareTag("MeetingArea"))
+            if (collision.CompareTag("MeetingArea"))
             {
                 _meetingArea = collision.gameObject;
+                _meetingArea.GetComponent<MeetingArea>().Register(this);
             }
         }
 
