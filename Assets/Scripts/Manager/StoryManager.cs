@@ -54,8 +54,8 @@ namespace SpicyJam.Manager
 
         public void Molest()
         {
-            if (_currentNpc.IsVampire) Debug.Log("You molested a vampire and was bitten (gameover)");
-            else Debug.Log("You molested a person");
+            if (_currentNpc.IsVampire) Debug.Log("You forced yourself on a vampire and was bitten (gameover)");
+            else Debug.Log("You forced yourself on someone");
             _currentNpc.WasMolested = true;
             CloseStory();
         }

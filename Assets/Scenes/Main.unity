@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Molest
+  m_text: Break
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba9baac44122e60458ae17b4dd96da9b, type: 2}
   m_sharedMaterial: {fileID: -7890364177632214551, guid: ba9baac44122e60458ae17b4dd96da9b, type: 2}
@@ -2367,10 +2367,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ec30e3bb94f784e9e69645a7016b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _displayText: 'You can subdue this person so they can work for you
+  _displayText: 'You can attempt to subdue this person, once they are broken they
+    will work for you
 
-    If you
-    attempt to subdue a vampire, they might fight back and make you theirs instead'
+    If you attempt to subdue a vampire, they might fight back
+    and make you theirs instead'
 --- !u!114 &1814517800
 MonoBehaviour:
   m_ObjectHideFlags: 0
