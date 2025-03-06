@@ -24,9 +24,22 @@ namespace SpicyJam.NPC
         public bool CanInteract => true;
         public GameObject GameObject => gameObject;
 
-        public bool IsVampire { set; get; }
+        private bool _isVampire;
+        public bool IsVampire
+        {
+            set
+            {
+                _isVampire = value;
+                if (value)
+                {
+                    WasBitten = true;
+                }
+            }
+            get => _isVampire;
+        }
         public bool IsPriest { set; get; }
         public bool WasMolested { set; get; }
+        public bool WasBitten { set; get; }
 
         private readonly string[] _eyesColors = new[] { "blue", "yellow", "brown" };
         private readonly string[] _hairColors = new[] { "blond", "light brown", "dark brown", "red" };
@@ -103,11 +116,15 @@ namespace SpicyJam.NPC
             str.AppendLine($"This person seem to be a {_attrs["age"]} {_attrs["gender"]} with {_attrs["eyesColor"]} eyes and {_attrs["hairColor"]} hair");
             if (IsPriest)
             {
-                str.AppendLine($"From {_attrs["gender"]} outfits, you can guess this person is a priest\n(Vampires will generally avoid being close to a priest)");
+                str.AppendLine($"From {_attrs["_pronouns"]} outfits, you can guess this person is a priest\n(Vampires will generally avoid being close to a priest)");
             }
-            if (WasMolested)
+            else if (WasMolested)
             {
-                str.AppendLine($"This person was assaulted by you and is now helping you");
+                str.AppendLine($"This person was broken by you and is now helping you");
+            }
+            if (WasBitten)
+            {
+                str.AppendLine($"From the mark on {_attrs["_pronouns"]} neck, you can guess this person was bitten");
             }
             return str.ToString();
         }

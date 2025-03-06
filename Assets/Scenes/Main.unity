@@ -615,6 +615,7 @@ MonoBehaviour:
   _display: {fileID: 1260425127}
   _dangerousOptions:
   - {fileID: 1283468936}
+  - {fileID: 1814517800}
 --- !u!1 &491368251
 GameObject:
   m_ObjectHideFlags: 0
