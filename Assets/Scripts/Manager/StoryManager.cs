@@ -60,6 +60,21 @@ namespace SpicyJam.Manager
             CloseStory();
         }
 
+        public void Unmark()
+        {
+            _currentNpc.MarkType = MarkType.None;
+        }
+
+        public void MarkAsVampire()
+        {
+            _currentNpc.MarkType = MarkType.VampireMark;
+        }
+
+        public void MarkAsInnocent()
+        {
+            _currentNpc.MarkType = MarkType.InnocentMark;
+        }
+
         public void CloseStory()
         {
             _storyContainer.SetActive(false);

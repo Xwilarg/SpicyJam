@@ -56,14 +56,14 @@ namespace SpicyJam.Story
                         break;
                     }
                 }
-                else if (totalWidth.y < _text.rectTransform.rect.height)
+                else// if (totalWidth.y < _text.rectTransform.rect.height)
                 {
                     tmp.Append($" {word}");
                 }
-                else
+                /*else
                 {
                     break;
-                }
+                }*/
             }
             var res = tmp.ToString()[1..];
             _displayLeft = _toDisplay[res.Length..];

@@ -54,6 +54,8 @@ namespace SpicyJam.NPC
 
         private GameObject _meetingArea;
 
+        public MarkType MarkType { set; private get; }
+
         public void Interact(PlayerController pc)
         {
             StoryManager.Instance.ShowDescription(this);
@@ -130,7 +132,7 @@ namespace SpicyJam.NPC
             str.AppendLine($"This person seem to be a {_attrs["age"]} {_attrs["gender"]} with {_attrs["eyesColor"]} eyes and {_attrs["hairColor"]} hair");
             if (IsPriest)
             {
-                str.AppendLine($"From {_attrs["_pronouns"]} outfits, you can guess this person is a priest\n(Vampires will generally avoid being close to a priest)");
+                str.AppendLine($"From {_attrs["_pronouns"]} outfits, you can guess this person is a priest");
             }
             else if (WasMolested)
             {
@@ -139,6 +141,14 @@ namespace SpicyJam.NPC
             if (WasBitten)
             {
                 str.AppendLine($"From the mark on {_attrs["_pronouns"]} neck, you can guess this person was bitten");
+            }
+            if (MarkType == MarkType.VampireMark)
+            {
+                str.AppendLine("You marked this target as a potential vampire");
+            }
+            else if (MarkType == MarkType.InnocentMark)
+            {
+                str.AppendLine("You marked this target as a potential innocent");
             }
             return str.ToString();
         }
@@ -199,5 +209,12 @@ namespace SpicyJam.NPC
                 Gizmos.DrawWireSphere(transform.position, _coll.radius);
             }
         }
+    }
+
+    public enum MarkType
+    {
+        None,
+        VampireMark,
+        InnocentMark
     }
 }
