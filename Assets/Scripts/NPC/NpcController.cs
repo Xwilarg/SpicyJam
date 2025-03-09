@@ -16,7 +16,7 @@ namespace SpicyJam.NPC
         private TriggerArea _triggerArea;
 
         [SerializeField]
-        private GameObject _vampireMark, _innocentMark;
+        private GameObject _vampireMark, _innocentMark, _brokenMark;
 
         private Transform _target;
         private Rigidbody2D _rb;
@@ -41,7 +41,16 @@ namespace SpicyJam.NPC
             get => _isVampire;
         }
         public bool IsPriest { set; get; }
-        public bool WasMolested { set; get; }
+        private bool _wasMolested;
+        public bool WasMolested
+        {
+            set
+            {
+                _wasMolested = value;
+                _brokenMark.SetActive(_wasMolested);
+            }
+            get => _wasMolested;
+        }
         public bool WasBitten { set; get; }
 
         private readonly string[] _eyesColors = new[] { "blue", "yellow", "brown" };
