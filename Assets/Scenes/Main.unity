@@ -2878,7 +2878,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Find vampires
+  m_text: About vampires
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba9baac44122e60458ae17b4dd96da9b, type: 2}
   m_sharedMaterial: {fileID: -7890364177632214551, guid: ba9baac44122e60458ae17b4dd96da9b, type: 2}
