@@ -15,6 +15,9 @@ namespace SpicyJam.NPC
         [SerializeField]
         private TriggerArea _triggerArea;
 
+        [SerializeField]
+        private GameObject _vampireMark, _innocentMark;
+
         private Transform _target;
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
@@ -54,7 +57,20 @@ namespace SpicyJam.NPC
 
         private GameObject _meetingArea;
 
-        public MarkType MarkType { set; private get; }
+        private MarkType _markType;
+        public MarkType MarkType
+        {
+            set
+            {
+                _markType = value;
+                _vampireMark.SetActive(false);
+                _innocentMark.SetActive(false);
+
+                if (_markType == MarkType.InnocentMark) _innocentMark.SetActive(true);
+                else if (_markType == MarkType.VampireMark) _vampireMark.SetActive(true);
+            }
+            private get => _markType;
+        }
 
         public void Interact(PlayerController pc)
         {
