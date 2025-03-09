@@ -157,7 +157,7 @@ namespace SpicyJam.NPC
             str.AppendLine($"This person seem to be a {_attrs["age"]} {_attrs["gender"]} with {_attrs["eyesColor"]} eyes and {_attrs["hairColor"]} hair");
             if (IsPriest)
             {
-                str.AppendLine($"From {_attrs["_pronouns"]} outfits, you can guess this person is a priest");
+                str.AppendLine($"From {_attrs["pronouns"]} outfits, you can guess this person is a priest");
             }
             else if (WasMolested)
             {
@@ -165,7 +165,7 @@ namespace SpicyJam.NPC
             }
             if (WasBitten)
             {
-                str.AppendLine($"From the mark on {_attrs["_pronouns"]} neck, you can guess this person was bitten");
+                str.AppendLine($"From the mark on {_attrs["pronouns"]} neck, you can guess this person was bitten");
             }
             if (MarkType == MarkType.VampireMark)
             {

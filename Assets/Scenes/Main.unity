@@ -838,19 +838,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 78149668}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 355905902}
-        m_TargetAssemblyTypeName: SpicyJam.Manager.StoryManager, Assembly-CSharp
-        m_MethodName: CloseStory
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &78149668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2496,19 +2484,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 621560664}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 355905902}
-        m_TargetAssemblyTypeName: SpicyJam.Manager.StoryManager, Assembly-CSharp
-        m_MethodName: CloseStory
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &621560664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3452,19 +3428,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1107446042}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 355905902}
-        m_TargetAssemblyTypeName: SpicyJam.Manager.StoryManager, Assembly-CSharp
-        m_MethodName: CloseStory
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1107446042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5757,19 +5721,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1700187959}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 355905902}
-        m_TargetAssemblyTypeName: SpicyJam.Manager.StoryManager, Assembly-CSharp
-        m_MethodName: CloseStory
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1700187959
 MonoBehaviour:
   m_ObjectHideFlags: 0

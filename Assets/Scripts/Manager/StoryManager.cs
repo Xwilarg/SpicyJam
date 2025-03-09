@@ -62,17 +62,21 @@ namespace SpicyJam.Manager
             }
         }
 
+        private string TutorialText => $"There are still {NpcManager.Instance.VampireLefts} vampires in the party\nDo you need help on how to proceed?";
+
         public void ShowIntro()
         {
             _introButtonContainer.SetActive(true);
             _interactionButtonContainer.SetActive(false);
 
+            _storyContainer.SetActive(true);
+            _currentNpc = null;
             _display.ToDisplay = $"There are still {NpcManager.Instance.VampireLefts} vampires in the party\nDo you need help on how to proceed?";
         }
 
         public void UpdateText(string text)
         {
-            _display.ToDisplay = text ?? _currentNpc.GetDescription();
+            _display.ToDisplay = text ?? (_currentNpc == null ? TutorialText : _currentNpc.GetDescription());
         }
 
         public void Kill()

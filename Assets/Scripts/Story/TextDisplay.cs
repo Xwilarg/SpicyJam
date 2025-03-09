@@ -22,6 +22,10 @@ namespace SpicyJam.Story
             {
                 _index = 0;
                 _timer = _displaySpeedRef;
+                if (_text == null)
+                {
+                    Awake();
+                }
                 _text.text = string.Empty;
                 _toDisplay = value.Replace("\r", ""); // Remove \r cause we don't care
                 SplitVertical();
