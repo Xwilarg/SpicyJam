@@ -23,6 +23,9 @@ namespace SpicyJam.Manager
         [SerializeField]
         private Button _molestButton;
 
+        [SerializeField]
+        private GameObject _interactionButtonContainer, _introButtonContainer;
+
         private NpcController _currentNpc;
 
         private int _strikeCount = 0;
@@ -35,6 +38,9 @@ namespace SpicyJam.Manager
 
         public void ShowDescription(NpcController npc)
         {
+            _introButtonContainer.SetActive(false);
+            _interactionButtonContainer.SetActive(true);
+
             _currentNpc = npc;
             _storyContainer.SetActive(true);
             _display.ToDisplay = npc.GetDescription();
@@ -54,6 +60,14 @@ namespace SpicyJam.Manager
                 }
                 _molestButton.interactable = !npc.WasMolested;
             }
+        }
+
+        public void ShowIntro()
+        {
+            _introButtonContainer.SetActive(true);
+            _interactionButtonContainer.SetActive(false);
+
+            _display.ToDisplay = $"There are still {NpcManager.Instance.VampireLefts} vampires in the party\nDo you need help on how to proceed?";
         }
 
         public void UpdateText(string text)

@@ -27,6 +27,8 @@ namespace SpicyJam.Manager
 
         private List<NpcController> _npcs = new();
 
+        public int VampireLefts => _npcs.Count(x => x.IsVampire);
+
         private void Awake()
         {
             Instance = this;
