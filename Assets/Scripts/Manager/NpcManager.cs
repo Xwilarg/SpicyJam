@@ -29,6 +29,14 @@ namespace SpicyJam.Manager
 
         public int VampireLefts => _npcs.Count(x => x.IsVampire);
 
+        public int BitLefts => _npcs.Count(x => !x.WasBitten);
+
+        public int NpcCountLeft => _npcs.Count;
+
+        public bool IsThereVampireLeft => _npcs.Any(x => x.IsVampire);
+
+        public bool WereAllBitten => BitLefts <= _priestCount;
+
         private void Awake()
         {
             Instance = this;
@@ -93,8 +101,5 @@ namespace SpicyJam.Manager
             _npcs.Remove(npc);
             Destroy(npc.gameObject);
         }
-
-        public bool IsThereVampireLeft
-            => _npcs.Any(x => x.IsVampire);
     }
 }

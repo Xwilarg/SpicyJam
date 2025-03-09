@@ -1,3 +1,4 @@
+using SpicyJam.Manager;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -35,6 +36,7 @@ namespace SpicyJam.NPC
 
                         target = targets[Random.Range(0, targets.Length)];
                         target.WasBitten = true;
+                        StoryManager.Instance.AttemptLoosingCondition();
 
                         if (!n.WasMolested) continue; // Vampire was not broken so it doesn't give hints
                     }

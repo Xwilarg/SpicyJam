@@ -2441,7 +2441,10 @@ MonoBehaviour:
     tracking them so you can confirm your thinkings
 
     Breaking someone also make
-    them mark people'
+    them mark people
+
+    Don''t forget you need to kill all vampires, even the ones
+    marked or broken!'
 --- !u!114 &621560663
 MonoBehaviour:
   m_ObjectHideFlags: 0

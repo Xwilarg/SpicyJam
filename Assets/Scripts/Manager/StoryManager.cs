@@ -62,7 +62,7 @@ namespace SpicyJam.Manager
             }
         }
 
-        private string TutorialText => $"There are still {NpcManager.Instance.VampireLefts} vampires in the party\nDo you need help on how to proceed?";
+        private string TutorialText => $"There are still {NpcManager.Instance.VampireLefts} vampires in the party\nOut of {NpcManager.Instance.NpcCountLeft} persons, there are {NpcManager.Instance.BitLefts} that weren't bit\nDo you need help on how to proceed?";
 
         public void ShowIntro()
         {
@@ -71,12 +71,20 @@ namespace SpicyJam.Manager
 
             _storyContainer.SetActive(true);
             _currentNpc = null;
-            _display.ToDisplay = $"There are still {NpcManager.Instance.VampireLefts} vampires in the party\nDo you need help on how to proceed?";
+            _display.ToDisplay = TutorialText;
         }
 
         public void UpdateText(string text)
         {
             _display.ToDisplay = text ?? (_currentNpc == null ? TutorialText : _currentNpc.GetDescription());
+        }
+
+        public void AttemptLoosingCondition()
+        {
+            if (_strikeCount == 3 || NpcManager.Instance.WereAllBitten)
+            {
+                // Defeat
+            }
         }
 
         public void Kill()
@@ -92,11 +100,8 @@ namespace SpicyJam.Manager
             else
             {
                 _strikeCount++;
-                if (_strikeCount == 3)
-                {
-                    // Defeat
-                }
             }
+            AttemptLoosingCondition();
             CloseStory();
         }
 
