@@ -17,7 +17,7 @@ namespace SpicyJam.Manager
         private GameObject _npcPrefab;
 
         [SerializeField]
-        private int _spawnCount, _vampireCount, _priestCount;
+        private int _spawnCount, _vampireCount, _priestCount, _startBittenCount;
 
         [SerializeField]
         private GameObject _meetingPrefab;
@@ -57,6 +57,15 @@ namespace SpicyJam.Manager
                 {
                     ids.Add(id);
                     _npcs[id].IsPriest = true;
+                }
+            }
+            while (ids.Count < _vampireCount + _priestCount + _startBittenCount) // We bit some random innocents
+            {
+                var id = Random.Range(0, _npcs.Count);
+                if (!ids.Contains(id))
+                {
+                    ids.Add(id);
+                    _npcs[id].WasBitten = true;
                 }
             }
         }
