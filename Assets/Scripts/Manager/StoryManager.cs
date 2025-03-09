@@ -17,8 +17,11 @@ namespace SpicyJam.Manager
         [SerializeField]
         private TextDisplay _display;
 
-        [SerializeField]
+        [SerializeField, Tooltip("Options that you can't do on VIP people (like the priest)")]
         private Button[] _dangerousOptions;
+
+        [SerializeField]
+        private Button _molestButton;
 
         private NpcController _currentNpc;
 
@@ -33,9 +36,21 @@ namespace SpicyJam.Manager
             _currentNpc = npc;
             _storyContainer.SetActive(true);
             _display.ToDisplay = npc.GetDescription();
-            foreach (var b in _dangerousOptions)
+
+            if (npc.IsPriest)
             {
-                b.interactable = !npc.IsPriest && !npc.WasMolested;
+                foreach (var b in _dangerousOptions)
+                {
+                    b.interactable = false;
+                }
+            }
+            else
+            {
+                foreach (var b in _dangerousOptions)
+                {
+                    b.interactable = true;
+                }
+                _molestButton.interactable = !npc.WasMolested;
             }
         }
 
