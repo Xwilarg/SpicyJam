@@ -69,7 +69,7 @@ namespace SpicyJam.NPC
                 if (_markType == MarkType.InnocentMark) _innocentMark.SetActive(true);
                 else if (_markType == MarkType.VampireMark) _vampireMark.SetActive(true);
             }
-            private get => _markType;
+            get => _markType;
         }
 
         public void Interact(PlayerController pc)

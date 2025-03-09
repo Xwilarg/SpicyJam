@@ -22,13 +22,33 @@ namespace SpicyJam.NPC
             _destroyTimer -= Time.deltaTime;
             if (_destroyTimer <= 0f)
             {
-                if (_npcs.Any(x => x.IsVampire))
+
+                foreach (var n in _npcs)
                 {
-                    var possibleTargets = _npcs.Where(x => !x.WasBitten).ToArray();
-                    if (possibleTargets.Any())
+                    NpcController target;
+
+                    if (n.IsVampire) // We are a vampire, we bit someone
                     {
-                        possibleTargets[Random.Range(0, possibleTargets.Length)].WasBitten = true;
+                        var targets = _npcs.Where(x => !x.WasBitten && !x.IsPriest && x.GameObject.GetInstanceID() != n.GameObject.GetInstanceID()).ToArray();
+
+                        if (!targets.Any()) continue;
+
+                        target = targets[Random.Range(0, targets.Length)];
+                        target.WasBitten = true;
+
+                        if (!n.WasMolested) continue; // Vampire was not broken so it doesn't give hints
                     }
+                    else if (n.WasMolested) // We are an innocent but was broken, so we tag random targets
+                    {
+                        var targets = _npcs.Where(x => x.MarkType != MarkType.VampireMark && !x.IsPriest && x.GameObject.GetInstanceID() != n.GameObject.GetInstanceID()).ToArray();
+
+                        if (!targets.Any()) continue;
+
+                        target = targets[Random.Range(0, targets.Length)];
+                    }
+                    else continue;
+
+                    target.MarkType = MarkType.InnocentMark;
                 }
                 Destroy(gameObject);
             }

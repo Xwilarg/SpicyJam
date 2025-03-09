@@ -25,6 +25,8 @@ namespace SpicyJam.Manager
 
         private NpcController _currentNpc;
 
+        private int _strikeCount = 0;
+
         private void Awake()
         {
             Instance = this;
@@ -61,16 +63,27 @@ namespace SpicyJam.Manager
 
         public void Kill()
         {
-            if (_currentNpc.IsVampire) Debug.Log("You killed a vampire!");
-            else Debug.Log("The person you killed wasn't a vampire (gameover)");
             NpcManager.Instance.Kill(_currentNpc);
+            if (_currentNpc.IsVampire)
+            {
+                if (!NpcManager.Instance.IsThereVampireLeft)
+                {
+                    // Victory
+                }
+            }
+            else
+            {
+                _strikeCount++;
+                if (_strikeCount == 3)
+                {
+                    // Defeat
+                }
+            }
             CloseStory();
         }
 
         public void Molest()
         {
-            if (_currentNpc.IsVampire) Debug.Log("You forced yourself on a vampire and was bitten (gameover)");
-            else Debug.Log("You forced yourself on someone");
             _currentNpc.WasMolested = true;
             CloseStory();
         }

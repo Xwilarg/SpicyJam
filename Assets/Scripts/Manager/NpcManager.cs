@@ -1,5 +1,6 @@
 using SpicyJam.NPC;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -81,5 +82,8 @@ namespace SpicyJam.Manager
             _npcs.Remove(npc);
             Destroy(npc.gameObject);
         }
+
+        public bool IsThereVampireLeft
+            => _npcs.Any(x => x.IsVampire);
     }
 }
